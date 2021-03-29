@@ -1,0 +1,5 @@
+{
+  "resources":[
+    {"pattern":"com/lowagie/text/pdf/fonts/.*.afm"}
+  ]
+}

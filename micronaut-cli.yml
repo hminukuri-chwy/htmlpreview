@@ -1,0 +1,6 @@
+applicationType: function
+defaultPackage: com.chewy
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, aws-lambda, gradle, java, junit, logback, readme, shade, yaml]
