@@ -52,6 +52,7 @@ public class TemplateManager {
           GetObjectRequest.builder().bucket(activeTemplatesBucket).key(s3Object.key()).build(),
           ResponseTransformer.toFile(tempFile));
     }
+    log.info("downloading templates completed");
   }
 
   public void downloadActiveTemplates() {

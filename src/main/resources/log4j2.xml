@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration
+        packages="com.amazonaws.services.lambda.runtime.log4j2.LambdaAppender;com.chewy.util.logging.CustomThrowableConverter">
+    <Appenders>
+        <Lambda name="Lambda">
+            <PatternLayout>
+                <alwaysWriteExceptions>false</alwaysWriteExceptions>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} rid=%X{rid} %-5p %c{1}:%L - %msg %customThrowable %n
+                </pattern>
+            </PatternLayout>
+        </Lambda>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Lambda"/>
+        </Root>
+    </Loggers>
+</Configuration>

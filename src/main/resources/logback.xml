@@ -1,15 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <withJansi>true</withJansi>
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-        <encoder>
-            <pattern>%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+    <conversionRule conversionWord="customThrowable"
+                    converterClass="com.chewy.util.logging.CustomThrowableConverter"/>
+
+    <appender name="Lambda" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.chewy.util.logging.MaskingPatternLayout">
+                <patternsProperty>((?&lt;=pinInformation.{1,3})\d{8})|((?&lt;=accountNumber.{1,3})\d{16})
+                </patternsProperty>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} %-5p %c{1}:%L - rid=%X{X-Request-ID} %msg
+                    %customThrowable %n
+                </pattern>
+            </layout>
         </encoder>
     </appender>
 
     <root level="info">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="Lambda"/>
     </root>
+
 </configuration>
